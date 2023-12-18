@@ -4,13 +4,12 @@ const Display = ({text}) => <div><h1><strong>{text}</strong></h1></div>
 
 const Button = ({text, onClick}) => <button onClick={onClick}>{text}</button>
 
-const Counter = ({text, count}) => <div>{text} {count}</div>
-
 const StatisticLine = ({text, value}) => {
   return (
-    <div>
-      <Counter text={text} count={value}></Counter>
-    </div>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   )
 }
 
@@ -22,14 +21,16 @@ const Statistics = ({feedback, findAvarege, findPositive}) => {
   }
 
   return (
-    <div>
-      <StatisticLine text={'good'} value={feedback.good} />
-      <StatisticLine text={'neutral'} value={feedback.neutral} />
-      <StatisticLine text={'bad'} value={feedback.bad} />
-      <StatisticLine text={'all'} value={feedback.good + feedback.neutral + feedback.bad} />
-      <StatisticLine text={'average'} value={findAvarege()} />
-      <StatisticLine text={'positive'} value={findPositive() + '%'} />
-    </div>
+    <table>
+      <tbody>
+        <StatisticLine text={'good'} value={feedback.good} />
+        <StatisticLine text={'neutral'} value={feedback.neutral} />
+        <StatisticLine text={'bad'} value={feedback.bad} />
+        <StatisticLine text={'all'} value={feedback.good + feedback.neutral + feedback.bad} />
+        <StatisticLine text={'average'} value={findAvarege()} />
+        <StatisticLine text={'positive'} value={findPositive() + '%'} />
+      </tbody>
+    </table>
   )
 }
 
