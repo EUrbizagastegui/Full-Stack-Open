@@ -6,8 +6,16 @@ const Button = ({text, onClick}) => <button onClick={onClick}>{text}</button>
 
 const Counter = ({text, count}) => <div>{text} {count}</div>
 
+const StatisticLine = ({text, value}) => {
+  return (
+    <div>
+      <Counter text={text} count={value}></Counter>
+    </div>
+  )
+}
+
 const Statistics = ({feedback, findAvarege, findPositive}) => {
-  
+
   //Condicional para mostrar el mensaje 'No feedback given' cuando no hay feedback dado
   if (feedback.good + feedback.neutral + feedback.bad === 0) {
     return <div>No feedback given</div>
@@ -15,12 +23,12 @@ const Statistics = ({feedback, findAvarege, findPositive}) => {
 
   return (
     <div>
-      <Counter text={'good'} count={feedback.good}></Counter>
-      <Counter text={'neutral'} count={feedback.neutral}></Counter>
-      <Counter text={'bad'} count={feedback.bad}></Counter>
-      <Counter text={'all'} count={feedback.good + feedback.neutral + feedback.bad}></Counter>
-      <Counter text={'average'} count={findAvarege()}></Counter>
-      <Counter text={'positive'} count={findPositive() + '%'}></Counter>
+      <StatisticLine text={'good'} value={feedback.good} />
+      <StatisticLine text={'neutral'} value={feedback.neutral} />
+      <StatisticLine text={'bad'} value={feedback.bad} />
+      <StatisticLine text={'all'} value={feedback.good + feedback.neutral + feedback.bad} />
+      <StatisticLine text={'average'} value={findAvarege()} />
+      <StatisticLine text={'positive'} value={findPositive() + '%'} />
     </div>
   )
 }
