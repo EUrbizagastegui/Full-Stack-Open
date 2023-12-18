@@ -7,6 +7,12 @@ const Button = ({text, onClick}) => <button onClick={onClick}>{text}</button>
 const Counter = ({text, count}) => <div>{text} {count}</div>
 
 const Statistics = ({feedback, findAvarege, findPositive}) => {
+  
+  //Condicional para mostrar el mensaje 'No feedback given' cuando no hay feedback dado
+  if (feedback.good + feedback.neutral + feedback.bad === 0) {
+    return <div>No feedback given</div>
+  }
+
   return (
     <div>
       <Counter text={'good'} count={feedback.good}></Counter>
