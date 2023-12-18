@@ -14,12 +14,20 @@ const App = () => {
     bad: 0
   })
 
+  const [total, setTotal] = useState(0)
+
   const handleFeedback = (type) => {
     setFeedback(prev => ({
       ...prev,
       [type]: prev[type] + 1
     }))
+
+    setTotal(feedback.good + feedback.neutral + feedback.bad + 1)
   }
+
+  const findAvarege = () => (feedback.good + feedback.neutral + feedback.bad) / 3
+
+  const findPositive = () => (feedback.good / total) * 100
 
   return (
     <div>
@@ -31,6 +39,9 @@ const App = () => {
       <Counter text={'good'} count={feedback.good}></Counter>
       <Counter text={'neutral'} count={feedback.neutral}></Counter>
       <Counter text={'bad'} count={feedback.bad}></Counter>
+      <Counter text={'all'} count={total}></Counter>
+      <Counter text={'average'} count={findAvarege()}></Counter>
+      <Counter text={'positive'} count={findPositive() + '%'}></Counter>
     </div>
   )
 }
